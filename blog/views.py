@@ -1,7 +1,7 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 
 from blog.models import Blog
+from blog.permissions import BlogAuthentication
 from blog.serializer import (BlogCreateSerializer, BlogListSerializer,
                              BlogRetrieveSerializer, BlogUpdateSerializer)
 
@@ -9,9 +9,9 @@ from blog.serializer import (BlogCreateSerializer, BlogListSerializer,
 class BlogViewSet(viewsets.ModelViewSet):
     serializer_class = BlogListSerializer
     queryset = Blog.objects.all()
+    permission_classes = (BlogAuthentication, )
 
     def get_serializer_class(self):
-        print(self.action)
         if self.action == "list":
             return BlogListSerializer
         elif self.action == 'create':

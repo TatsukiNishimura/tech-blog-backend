@@ -1,0 +1,4 @@
+rest_framework
+djangorestframework-simplejwt
+djoser
+django-cors-headers

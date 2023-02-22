@@ -16,13 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenRefreshView
 
 from blog import views as blog_views
+from blog.auth.views import TokenObtainPairWithExpiredDateView
 
 router = DefaultRouter()
 router.register(r'blogs', blog_views.BlogViewSet, basename="blogs")
 
-main_url_patterns = [path("", include(router.urls)), ]
+main_url_patterns = [
+    path('auth/token/', TokenObtainPairWithExpiredDateView.as_view(),
+         name='token_obtain_pair'),
+    path('auth/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path("", include(router.urls)),
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
