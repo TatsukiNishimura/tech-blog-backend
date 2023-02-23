@@ -15,13 +15,14 @@ class BlogListSerializer(serializers.ModelSerializer):
 class BlogRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ("id", "content", "title", "created_at", "updated_at")
+        fields = ("id", "content", "title", "created_at",
+                  "updated_at", "content_markdown")
 
 
 class BlogCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ("title", "content")
+        fields = ("title", "content", "content_markdown")
 
 
 class BlogUpdateSerializer(serializers.ModelSerializer):
