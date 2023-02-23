@@ -1,4 +1,4 @@
-rest_framework
+djangorestframework
 djangorestframework-simplejwt
 djoser
 django-cors-headers
